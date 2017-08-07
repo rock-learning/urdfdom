@@ -39,8 +39,8 @@ include_directories(${tinyxml_include_dirs})
 link_directories(${tinyxml_library_dirs})
 add_definitions(${tinyxml_cflags})
 
-find_package(urdfdom_headers REQUIRED)
-include_directories(SYSTEM ${urdfdom_headers_INCLUDE_DIRS})
+find_package(urdfdom_headers_approxik REQUIRED)
+include_directories(SYSTEM ${urdfdom_headers_approxik_INCLUDE_DIRS})
 
 find_package(console_bridge REQUIRED)
 include_directories(SYSTEM ${console_bridge_INCLUDE_DIRS})
@@ -54,7 +54,7 @@ add_subdirectory(urdf_parser)
 
 set(PKG_NAME ${PROJECT_NAME})
 set(PKG_LIBRARIES urdfdom_sensor urdfdom_model_state urdfdom_model urdfdom_world)
-set(PKG_DEPENDS urdfdom_headers console_bridge)
+set(PKG_DEPENDS urdfdom_headers_approxik console_bridge)
 set(cmake_conf_file "${CMAKE_CURRENT_SOURCE_DIR}/cmake/urdfdom-config.cmake")
 configure_file("${cmake_conf_file}.in" "${CMAKE_BINARY_DIR}/${cmake_conf_file}" @ONLY)
 install(FILES ${CMAKE_BINARY_DIR}/${cmake_conf_file}
@@ -63,7 +63,7 @@ install(FILES ${CMAKE_BINARY_DIR}/${cmake_conf_file}
 # Make the package config file
 if (NOT MSVC)
   set(PKG_DESC "Unified Robot Description Format")
-  set(PKG_DEPENDS "urdfdom_headers console_bridge") # make the list separated by spaces instead of ;
+  set(PKG_DEPENDS "urdfdom_headers_approxik console_bridge") # make the list separated by spaces instead of ;
   set(PKG_URDF_LIBS "-lurdfdom_sensor -lurdfdom_model_state -lurdfdom_model -lurdfdom_world")
   set(pkg_conf_file "${CMAKE_CURRENT_SOURCE_DIR}/cmake/pkgconfig/urdfdom.pc")
   configure_file("${pkg_conf_file}.in" "${CMAKE_BINARY_DIR}/${pkg_conf_file}" @ONLY)
